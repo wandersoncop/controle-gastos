@@ -1,12 +1,12 @@
 import React,{useState} from "react";
 import * as C from "./styles";
 
-const Form = ({handleAdd})=> {
+const Form = ({handleAdd, TransactionsList, setTransactionsList, }) => {
     const [desc, setDesc] = useState("");
     const [amount, setAmount]=useState("")  
     const [isExpense, setExpense] = useState(false);
 
-    const generateID = ()=>Math.round(Math.random()*1000);
+    const generateID = () => Math.round(Math.random() * 1000);
 
     const handleSave = ()=> {
         if(!desc || !amount){
@@ -17,7 +17,7 @@ const Form = ({handleAdd})=> {
             return;
         }
 
-        const transaction ={
+        const transaction = {
             id: generateID(),
             desc:desc,
             amount: amount,
@@ -36,16 +36,13 @@ const Form = ({handleAdd})=> {
             <C.InputContent>
                 <C.Label>Descrição</C.Label>
                 <C.Input value={desc} onChange={(e) => setDesc(e.target.value)}/>
-        </C.InputContent>
-        <C.InputContent>
+            </C.InputContent>
+            <C.InputContent>
                 <C.Label>Valor</C.Label>
-                <C.Input 
-                    value={amount} 
-                    type="number" 
-                    onChange={(e) => setAmount(e.target.value)}
+                <C.Input value={amount} type="number" onChange={(e) => setAmount(e.target.value)}
                 />
-        </C.InputContent>
-        <C.RadioGroup>
+            </C.InputContent>
+            <C.RadioGroup>
                 <C.Input 
                 type="radio" 
                 id= "rIncome" 
@@ -66,7 +63,9 @@ const Form = ({handleAdd})=> {
             </C.RadioGroup>
             <C.Button onClick={handleSave}>Adicionar</C.Button>
         
-        </C.Container>            
+        </C.Container>  
+        <Grid itens={transactionsList} setItens ={setTransactionsList}/> 
+
         </>
     );
 };
