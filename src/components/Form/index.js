@@ -5,9 +5,13 @@ import * as C from "./styles";
 const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
   const [isExpense, setExpense] = useState(false);
+  
 
   const generateID = () => Math.round(Math.random() * 1000);
+
+  
 
   const handleSave = () => {
     if (!desc || !amount) {
@@ -20,6 +24,7 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
 
     const transaction = {
       id: generateID(),
+      date:date,
       desc: desc,
       amount: amount,
       expense: isExpense,
@@ -37,9 +42,9 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
       <C.InputContent>
           <C.Label>Data</C.Label>
           <C.Input
-            value={amount}
-             type="date"
-            onChange={(e) => setAmount(e.target.value)}
+            value={date}
+             type="Date"
+            onChange={(e) => setDate(e.target.value)}
           />
         </C.InputContent>
 
@@ -47,6 +52,7 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
           <C.Label>Descrição</C.Label>
           <C.Input value={desc} onChange={(e) => setDesc(e.target.value)} />
         </C.InputContent>
+
         <C.InputContent>
           <C.Label>Valor</C.Label>
           <C.Input

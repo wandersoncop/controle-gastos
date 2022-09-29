@@ -9,6 +9,7 @@ import {
 const GridItem = ({ item, onDelete }) => {
   return (
     <C.Tr>
+      <C.Td>{item.date}</C.Td>
       <C.Td>{item.desc}</C.Td>
       <C.Td>{item.amount}</C.Td>
       <C.Td alignCenter>
